@@ -51,7 +51,6 @@ router.post('/users', asyncHandler((req, res, next) => {
     });
 
     new JSONAPIDeserializer().deserialize(req.body, async (err, user) => {
-
         try {
             if (user) {
                 const { username, email } = user;
