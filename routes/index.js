@@ -63,7 +63,10 @@ router.post('/users', asyncHandler((req, res, next) => {
                     res.status(404).send('{"error": "E-mail exists already"}');
                     next();
                 } else {
-                    bcrypt.genSalt(10, (err, salt) => {
+                    bcrypt.genSalt(10, (e, salt) => {
+                        if (e) {
+                            console.log(e);
+                        }
                         bcrypt.hash(password, salt, async (error, hash) => {
                             if (error) {
                                 next(error);
