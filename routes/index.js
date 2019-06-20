@@ -7,18 +7,19 @@ const bcrypt = require('bcrypt');
 
 const router = express.Router();
 
+const UserSerializer = new JSONAPISerializer('user', {
+    attributes: ['username', 'email', 'password'],
+});
+
 // User model
 const User = require('../models/User');
-
 // token route for auth
 router.post('/token', asyncHandler(async (req, res, next) => {
     if (req.body.grant_type === 'password') {
         try {
             const { username, password } = req.body;
             await User.find({ email: username }, (err, docs) => {
-                console.log(docs);
                 if (docs.length !== 0) {
-                    // eslint-disable-next-line max-len
                     bcrypt.compare(password, docs[0].password, (error, val) => {
                         if (error) {
                             next(error);
@@ -46,10 +47,6 @@ router.post('/token', asyncHandler(async (req, res, next) => {
 
 // router for registering new user
 router.post('/users', asyncHandler((req, res, next) => {
-    const UserSerializer = new JSONAPISerializer('user', {
-        attributes: ['username', 'email', 'password'],
-    });
-
     new JSONAPIDeserializer().deserialize(req.body, async (err, user) => {
         try {
             if (user) {
