@@ -1,9 +1,9 @@
-<form {{action "authenticate" on="submit"}}>
+<form {{action "authenticate" on="submit"}} class="ui form">
   <label for="identification">Login</label>
-  {{input id="identification" placeholder="Enter Login" value=identification}}
+  {{input id="identification" placeholder="Enter Login" value=identification class="ui input"}}
   <label for="password">Password</label>
-  {{input id="password" placeholder="Enter Password" type="password" value=password}}
-  <button type="submit">Login</button>
+  {{input id="password" placeholder="Enter Password" type="password" value=password class="ui input"}}
+  <button class="ui button" type="submit">Login</button>
   {{#if errorMessage}}
     <p>{{errorMessage}}</p>
   {{/if}}

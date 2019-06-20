@@ -12,17 +12,18 @@ const User = require('../models/User');
 // token route for auth
 router.post('/token', asyncHandler(async (req, res, next) => {
     if (req.body.grant_type === 'password') {
-        const { email, password } = req.body;
+        const { username, password } = req.body;
 
-        const user = await User.find({ email, password });
-
-        if (user) {
-            res.status(200).send('{ "access_token": "secret token"}');
-            next();
-        } else {
-            res.status(400).send('{"error": "invalid_grant"}');
-            next();
-        }
+        await User.find({ email: username, password }, (err, docs) => {
+            console.log(docs);
+            if (docs.length !== 0) {
+                res.status(200).send('{ "access_token": "secret token"}');
+                next();
+            } else {
+                res.status(400).send('{"error": "invalid_grant"}');
+                next();
+            }
+        });
     } else {
         res.status(400).send('{ "error": "unsupported_grant_type" }');
     }

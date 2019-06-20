@@ -36,7 +36,7 @@ module.exports = function(environment) {
   };
 
   ENV['ember-simple-auth'] = {
-    routeAfterAuthentication: 'protected'
+    routeAfterAuthentication: '/protected'
   }
 
   if (environment === 'development') {

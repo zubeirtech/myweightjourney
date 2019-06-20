@@ -1,12 +1,9 @@
 {{!-- app/templates/application.hbs --}}
 <div class="menu">
-  …
   {{#if session.isAuthenticated}}
-    <a {{action 'invalidateSession'}}>Logout</a>
+    <button class="ui button" {{action 'invalidateSession'}}> <a  >Logout</a></button>
   {{else}}
-    {{#link-to 'login'}}Login{{/link-to}}
+    {{#link-to 'login'}} <button class="ui button">Login</button> {{/link-to}}
   {{/if}}
 </div>
-<div class="main">
-  {{outlet}}
-</div>
+{{outlet}}
