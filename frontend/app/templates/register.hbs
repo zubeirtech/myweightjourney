@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="ui centered grid">
+    <div class="five wide column"></div>
+    <div class="six wide column">
+      <div class="ui raised segment">
+        <form class="ui form">
+          <div class="field">
+            <label>Username</label>
+            {{input value=this.username type="text" enter=(action "register")}}
+          </div>
+          <div class="field">
+            <label>E-mail</label>
+            {{input value=this.email type="text" enter=(action "register")}}
+          </div>
+          <div class="field">
+            <label>Enter Password</label>
+            {{input value=this.password type="text" enter=(action "register")}}
+          </div>
+          <div class="field">
+            <label>Enter Password Again</label>
+            {{input value=this.secondPassword type="text" enter=(action "register")}}
+          </div>
+          <button class="ui button" type="submit" {{action "register"}}>Submit</button>
+        </form>
+      </div>
+    </div>
+    <div class="five wide column"></div>
+  </div>
+</div>
