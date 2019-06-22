@@ -1,0 +1,48 @@
+Ember + express + mongodb + mongoose
+ 
+Functions:
+
+Graph to demonstrate weight tracking
+Form to add body data
+preferred type lbs or kg
+recommenden calories intake
+
+TABLES:
+
+person:
+  
+  - Name: String
+  - gender: string
+  - bmi: float
+  - goal: enum('lose', 'gain')
+  - unit: enum('metric', 'imperial')
+  - height: float
+  - weight: float
+  - age: int
+
+
+ROUTES:
+  
+dashboard:
+
+  - shows Graph weight by date
+  - basically shows all body data
+  - shows recommended calories intake
+
+person: 
+
+  new:
+    
+    - Create new person
+    - Fill out everything
+  
+  edit:
+
+    - Edit given person data
+    - edit goal
+    - edit name
+    - edit gender
+    - edit unit
+    - edit height
+    - edit weight
+    - edit age 

@@ -1,9 +1,36 @@
 {{!-- app/templates/application.hbs --}}
-<div class="menu">
-  {{#if session.isAuthenticated}}
-    <button class="ui button" {{action 'invalidateSession'}}> <a  >Logout</a></button>
-  {{else}}
-    {{#link-to 'login'}} <button class="ui button">Login</button> {{/link-to}}
-  {{/if}}
+<div class="ui container">
+  <div class="ui grid">
+    <div class="one wide column">
+      <div class="ui visible massive very wide inverted vertical sidebar menu">
+        <a class="item">
+          <img class="ui small image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/YouTube_Logo_2017.svg/512px-YouTube_Logo_2017.svg.png" alt="youtube_logo">
+        </a>
+        {{#link-to "dashboard" class="item"}}
+          Dashboard
+        {{/link-to}}
+        {{#link-to "person.new" class="item"}}
+          Add new person
+        {{/link-to}}
+        {{#link-to "person.edit" class="item"}}
+          Edit new person
+        {{/link-to}}
+      </div>
+    </div>
+    <div class="fifteen wide column">
+        <div class="ui grid">
+          <div class="fifteen wide column"></div>
+          <div class="one wide column">
+            <br>
+            <br>
+            {{#if session.isAuthenticated}}
+              <button class="ui inverted red circular button" {{action 'invalidateSession'}}>Logout</button>
+            {{else}}
+              {{#link-to 'login'}} <button class="ui inverted red circular button">Login</button> {{/link-to}}
+            {{/if}}
+          </div>
+        </div>
+      {{outlet}}
+    </div>
+  </div>
 </div>
-{{outlet}}

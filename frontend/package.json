@@ -40,6 +40,7 @@
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-qunit": "^3.4.1",
     "ember-resolver": "^5.0.1",
+    "ember-responsive": "^3.0.1",
     "ember-simple-auth": "^1.8.2",
     "ember-source": "~3.8.0",
     "ember-toastr": "^1.7.2",

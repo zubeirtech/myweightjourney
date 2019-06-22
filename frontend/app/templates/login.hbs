@@ -1,9 +1,26 @@
-<form {{action "authenticate" on="submit"}} class="ui form">
-  <label for="identification">Login</label>
-  {{input id="identification" placeholder="Enter Login" value=identification class="ui input"}}
-  <label for="password">Password</label>
-  {{input id="password" placeholder="Enter Password" type="password" value=password class="ui input"}}
-  <button class="ui button" type="submit">Login</button>
-  {{#if errorMessage}}
-  {{/if}}
-</form>
+
+<div class="ui container">
+  <div class="ui centered grid">
+    <div class="three wide column">
+    </div>
+    <div class="ten wide column">
+      <div class="ui red raised segment">
+        <form {{action "authenticate" on="submit"}} class="ui form">
+          <label for="identification">Login</label>
+          {{input id="identification" placeholder="Enter Login" value=identification class="ui input"}}
+          <br>
+          <br>
+          <label for="password">Password</label>
+          {{input id="password" placeholder="Enter Password" type="password" value=password class="ui input"}} 
+          <br>
+          <br>
+          <button class="ui inverted red circular button" type="submit">Login</button>
+          {{#if errorMessage}}
+          {{/if}}
+        </form>
+      </div>
+    </div>
+    <div class="three wide column">
+    </div>
+  </div>
+</div>
