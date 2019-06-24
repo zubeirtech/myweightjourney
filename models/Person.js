@@ -1,19 +1,8 @@
 const mongoose = require('mongoose');
 
-const DateSchema = new mongoose.Schema({
-    date: {
-        type: Date,
-        default: Date.now(),
-        required: true,
-    },
-});
+const DateSchema = new mongoose.Schema({ name: Number });
 
-const WeightSchema = new mongoose.Schema({
-    weight: {
-        type: Number,
-        require: true,
-    },
-});
+const WeightSchema = new mongoose.Schema({ name: Number });
 
 const PersonSchema = new mongoose.Schema({
     name: {
@@ -38,18 +27,12 @@ const PersonSchema = new mongoose.Schema({
         enum: ['metric', 'imperial'],
         required: true,
     },
-    dates: {
-        type: [DateSchema],
-        required: true,
-    },
+    dates: [Number],
     height: {
         type: Number,
         required: true,
     },
-    weights: {
-        type: [WeightSchema],
-        required: true,
-    },
+    weights: [Number],
     age: {
         type: Number,
         required: true,
