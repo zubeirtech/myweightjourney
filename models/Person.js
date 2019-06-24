@@ -1,9 +1,5 @@
 const mongoose = require('mongoose');
 
-const DateSchema = new mongoose.Schema({ name: Number });
-
-const WeightSchema = new mongoose.Schema({ name: Number });
-
 const PersonSchema = new mongoose.Schema({
     name: {
         type: String,

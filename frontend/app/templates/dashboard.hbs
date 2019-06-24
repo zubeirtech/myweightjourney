@@ -1,1 +1,86 @@
-{{outlet}}
+<div class="ui container">
+    <br>
+    <br>
+    <div class="ui grid">
+        <div class="sixteen wide column">
+            <div class="ui raised segment">
+                {{#each this.model as |model|}}
+                <div class="ui medium form">
+                    <div class="four fields">
+                        <div class="field">
+                            <label for="">Name</label>
+                            <h1 class="ui medium header">{{model.name}}</h1>
+                        </div>
+                        <div class="field">
+                            <label for="">Age</label>
+                            <h1 class="ui medium header">{{model.age}}</h1>
+                        </div>
+                        <div class="field">
+                            <label for="">Gender</label>
+                            <h1 class="ui medium header">{{model.gender}}</h1>
+                        </div>
+                        <div class="field">
+                            <label for="">Body Mass Index</label>
+                            <br>
+                              {{#if (gt model.bmi 40)}}
+                                {{#ui-popup content="Heavily Overweight!"}}
+                                  <h1 class="ui medium red header">{{model.bmi}}</h1>
+                                {{/ui-popup}}
+                              {{/if}}
+                              {{#if (lt model.bmi 40)}}
+                                {{#ui-popup content="Obesity!"}}
+                                  <h1 class="ui medium orange header">{{model.bmi}}</h1>
+                                {{/ui-popup}}
+                              {{/if}}
+                              {{#if (lt model.bmi 31)}}
+                                {{#ui-popup content="Overweight!"}}
+                                  <h1 class="ui medium yellow header">{{model.bmi}}</h1>
+                                {{/ui-popup}}
+                              {{/if}}
+                              {{#if (lt model.bmi 26)}}
+                                {{#ui-popup content="Normal Weight"}}
+                                  <h1 class="ui medium green header">{{model.bmi}}</h1>
+                                {{/ui-popup}}
+                              {{/if}}
+                              {{#if (lt model.bmi 20)}}
+                                {{#ui-popup content="Normal Weight"}}
+                                  <h1 class="ui medium orange header">{{model.bmi}}<i class="info circle icon"></i></h1>
+                                {{/ui-popup}}
+                              {{/if}}
+                        </div>
+                    </div>
+                    <div class="four fields">
+                        <div class="field">
+                            <label for="">Goal</label>
+                            <h1 class="ui medium header">{{model.goal}} weight</h1>
+                        </div>
+                        <div class="field">
+                            <label for="">Height</label>
+                            <h1 class="ui medium header">{{model.height}}</h1>
+                        </div>
+                        <div class="field">
+                            <label for="">Unit</label>
+                            <h1 class="ui medium header">{{model.unit}}</h1>
+                        </div>
+                        <div class="field">
+                            <label for="">Add new weight</label>
+                            <br>
+                            <div class="ui action input">
+                              {{input value=this.newWeight placeholder="New weight..."}}
+                              <button class="ui inverted blue circular button">Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+    <div class="ui grid">
+        <div class="sixteen wide column">
+            <div class="ui raised segment">
+                <div id="visualdata">{{ember-chart type="Line" data=chartData width=100 height=500}}</div>
+            </div>
+        </div>
+    </div>
+</div>

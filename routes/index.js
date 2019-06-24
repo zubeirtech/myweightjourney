@@ -20,7 +20,7 @@ const PersonSerializer = new JSONAPISerializer('person', {
         'unit',
         'dates',
         'height',
-        'weight',
+        'weights',
         'age',
     ],
 });
@@ -112,12 +112,13 @@ router.post('/users', asyncHandler((req, res, next) => {
     });
 }));
 
-
-router.get('/dashboard', asyncHandler(async (req, res, next) => {
+router.get('/people', asyncHandler(async (req, res, next) => {
     try {
-        const persons = await Person.find();
-        if (persons) {
-            const personsJson = PersonSerializer.serialize(persons);
+        const docs = await Person.find();
+        if (docs) {
+            const personDocs = docs[0];
+            console.log(personDocs);
+            const personsJson = PersonSerializer.serialize(personDocs);
             res.status(200).send(personsJson);
             next();
         }
@@ -126,8 +127,9 @@ router.get('/dashboard', asyncHandler(async (req, res, next) => {
     }
 }));
 
-router.post('/people', asyncHandler(async (req, res, next) => {
+router.put('/people/:id', asyncHandler(async (req, res, next) => {
     try {
+        console.log(req.body);
         new JSONAPIDeserializer().deserialize(req.body, async (err, person) => {
             const {
                 name,
@@ -140,26 +142,6 @@ router.post('/people', asyncHandler(async (req, res, next) => {
                 weights,
                 age,
             } = person;
-
-            const newPerson = new Person({
-                name,
-                gender,
-                bmi,
-                goal,
-                unit,
-                dates,
-                height,
-                weights,
-                age,
-            });
-
-            const savePerson = await newPerson.save();
-
-            if (savePerson) {
-                const personsJson = PersonSerializer.serialize(savePerson);
-                res.status(200).json(personsJson);
-                next();
-            }
         });
     } catch (error) {
         next(error);
