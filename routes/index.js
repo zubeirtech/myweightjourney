@@ -117,7 +117,6 @@ router.get('/people', asyncHandler(async (req, res, next) => {
         const docs = await Person.find();
         if (docs) {
             const personDocs = docs[0];
-            console.log(personDocs);
             const personsJson = PersonSerializer.serialize(personDocs);
             res.status(200).send(personsJson);
             next();
@@ -127,11 +126,11 @@ router.get('/people', asyncHandler(async (req, res, next) => {
     }
 }));
 
-router.put('/people/:id', asyncHandler(async (req, res, next) => {
+router.patch('/people/:id', asyncHandler(async (req, res, next) => {
     try {
-        console.log(req.body);
         new JSONAPIDeserializer().deserialize(req.body, async (err, person) => {
             const {
+                id,
                 name,
                 gender,
                 bmi,
@@ -142,6 +141,23 @@ router.put('/people/:id', asyncHandler(async (req, res, next) => {
                 weights,
                 age,
             } = person;
+
+            const doc = await Person.findById(id);
+            doc.name = name;
+            doc.gender = gender;
+            doc.bmi = bmi;
+            doc.goal = goal;
+            doc.unit = unit;
+            doc.dates = dates;
+            doc.height = height;
+            doc.weights = weights;
+            doc.age = age;
+
+            await doc.save();
+
+            const personJson = PersonSerializer.serialize(doc);
+            res.status(200).send(personJson);
+            next();
         });
     } catch (error) {
         next(error);

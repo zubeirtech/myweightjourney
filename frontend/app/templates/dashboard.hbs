@@ -43,8 +43,8 @@
                                 {{/ui-popup}}
                               {{/if}}
                               {{#if (lt model.bmi 20)}}
-                                {{#ui-popup content="Normal Weight"}}
-                                  <h1 class="ui medium orange header">{{model.bmi}}<i class="info circle icon"></i></h1>
+                                {{#ui-popup content="Normal Weight" class="info icon" tagName="i"}}
+                                  <h1 class="ui medium orange header">{{model.bmi}}</h1>
                                 {{/ui-popup}}
                               {{/if}}
                         </div>

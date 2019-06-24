@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { set } from '@ember/object';
 import mathjs from 'mathjs';
+import Ember from 'ember';
 
 export default Controller.extend({
 
@@ -39,9 +40,13 @@ export default Controller.extend({
                         set(model, 'weights', []);
                         model.weights.pushObject(parseInt(this.currentWeight));
                         //Save Model
-                        await model.save()
-                        this.toastr.success('Successfully saved new person', 'Nice!');
-                        this.transitionToRoute('/dashboard');
+                        await model.save().then(doc => {
+                            this.toastr.success('Successfully saved new person', 'Nice!');
+                            this.transitionToRoute('dashboard');
+                        }).catch(e => {
+                            Ember.Logger.error(e);
+                        })
+                       
                         
                     } else {
                         let bminum = Math.round(mathjs.evaluate(`${this.currentWeight} / ${model.height} ^ 2 * 703`))
@@ -49,7 +54,7 @@ export default Controller.extend({
                         let person = await model.save();
                         if (person) {
                             this.toastr.success('Successfully saved new person', 'Nice!');
-                            this.transitionToRoute('/dashboard');
+                            this.transitionToRoute('dashboard');
                         }
                     }
                 }
