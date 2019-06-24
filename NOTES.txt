@@ -19,6 +19,8 @@ person:
   - height: float
   - weight: float
   - age: int
+  - startDate: type: Date
+  - lastDate: 
 
 
 ROUTES:
@@ -30,11 +32,6 @@ dashboard:
   - shows recommended calories intake
 
 person: 
-
-  new:
-    
-    - Create new person
-    - Fill out everything
   
   edit:
 
@@ -46,3 +43,9 @@ person:
     - edit height
     - edit weight
     - edit age 
+
+  delete:
+
+    - asks email for security reasons
+
+  

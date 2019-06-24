@@ -11,8 +11,24 @@ const UserSerializer = new JSONAPISerializer('user', {
     attributes: ['username', 'email', 'password'],
 });
 
-// User model
+const PersonSerializer = new JSONAPISerializer('person', {
+    attributes: [
+        'name',
+        'gender',
+        'bmi',
+        'goal',
+        'unit',
+        'dates',
+        'height',
+        'weight',
+        'age',
+    ],
+});
+
+// models
 const User = require('../models/User');
+const Person = require('../models/Person');
+
 // token route for auth
 router.post('/token', asyncHandler(async (req, res, next) => {
     if (req.body.grant_type === 'password') {
@@ -96,5 +112,18 @@ router.post('/users', asyncHandler((req, res, next) => {
     });
 }));
 
+
+router.get('/dashboard', asyncHandler(async (req, res, next) => {
+    try {
+        const persons = await Person.find();
+        if (persons) {
+            const personsJson = PersonSerializer.serialize(persons);
+            res.status(200).send(personsJson);
+            next();
+        }
+    } catch (error) {
+        next(error);
+    }
+}));
 
 module.exports = router;

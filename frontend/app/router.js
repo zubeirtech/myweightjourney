@@ -11,7 +11,9 @@ Router.map(function() {
   this.route('register');
   this.route('dashboard');
 
-  this.route('person', function() {
+  this.route('person', function() {});
+
+  this.route('persons', function() {
     this.route('new');
     this.route('edit');
   });
