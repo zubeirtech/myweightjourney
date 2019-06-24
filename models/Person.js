@@ -43,11 +43,11 @@ const PersonSchema = new mongoose.Schema({
         required: true,
     },
     height: {
-        type: [WeightSchema],
+        type: Number,
         required: true,
     },
-    weight: {
-        type: Number,
+    weights: {
+        type: [WeightSchema],
         required: true,
     },
     age: {

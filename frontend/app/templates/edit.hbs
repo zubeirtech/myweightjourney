@@ -1,0 +1,75 @@
+<div class="ui container">
+    <div class="ui grid">
+      <div class="sixteen wide column">
+        <div class="ui raised segment">
+            <div class="ui form">
+                <h1 class="ui dividing header">Add a new person</h1>
+                <div class="two fields">
+                    <div class="field">
+                        <label for="">Name</label>
+                    {{input value=this.model.name placeholder="Enter Name"}}
+                    </div>
+                    <div class="field">
+                      <label for="">Age</label>
+                      {{input type="number" value=this.model.age placeholder="Enter Age" keyUp=(action "checkNum")}}
+                    </div>
+                </div>
+                <div class="two fields">
+                    <div class="field">
+                        <label for="">Gender</label>
+                        {{input value=this.model.gender placeholder="Enter Gender"}}
+                    </div>
+                    <div class="field">
+                        <label for="">Goal</label>
+                        {{#ui-dropdown class="selection" selected="Bob" onChange=(action (mut this.model.goal))}}
+                          <div class="default text">Goal</div>
+                          <i class="dropdown icon"></i>
+                          <div class="menu">
+                            {{#each this.goals as |goal|}}
+                              <div data-value="{{goal}}" class="item">
+                                {{goal}} weight
+                              </div>
+                            {{/each}}
+                          </div>
+                        {{/ui-dropdown}}
+                    </div>
+                </div>
+                <div class="two fields">
+                    <div class="field">
+                        <label for="">Weight in kg/lbs</label>
+                        {{input type="number" value=this.currentWeight keyUp=(action "checkNum") placeholder="Enter Weight"}}
+                    </div>
+                    <div class="field">
+                        <label for="">Height in cm/inch</label>
+                        {{input type="number" value=this.model.height keyUp=(action "checkNum") placeholder="Enter Height"}}
+                    </div>
+                </div>
+                <div class="two fields">
+                    <div class="field">
+                        <label for="">Unit</label>
+                        {{#ui-dropdown class="selection" selected="Bob" onChange=(action (mut this.model.unit))}}
+                          <div class="default text">Unit</div>
+                          <i class="dropdown icon"></i>
+                          <div class="menu">
+                            {{#each this.units as |unit|}}
+                              <div data-value="{{unit.name}}" class="item">
+                                {{unit.name}} - {{unit.value}}
+                              </div>
+                            {{/each}}
+                          </div>
+                        {{/ui-dropdown}}
+                    </div>
+                    <div class="field"></div>
+                </div>
+                <br>
+                <div class="two fields">
+                    <div class="field">
+                        <button type="submit" class="ui inverted circular green button" {{action "savePerson"}}>Save new Person</button>
+                    </div>
+                    <div class="field"></div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>

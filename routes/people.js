@@ -25,6 +25,15 @@ const PersonSerializer = new JSONAPISerializer('person', {
     ],
 });
 
+router.post('/', asyncHandler(async (req, res, next) => {
+    try {
+        console.log(req.body);
+        next(req.body);
+    } catch (e) {
+        next(e);
+    }
+}));
+
 router.post('/new', asyncHandler(async (req, res, next) => {
     try {
         console.log(req.body);

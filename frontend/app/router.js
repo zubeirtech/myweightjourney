@@ -14,9 +14,11 @@ Router.map(function() {
   this.route('person', function() {});
 
   this.route('persons', function() {
-    this.route('new');
     this.route('edit');
   });
+
+  this.route('people', function() {});
+  this.route('edit');
 });
 
 export default Router;

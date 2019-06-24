@@ -126,4 +126,12 @@ router.get('/dashboard', asyncHandler(async (req, res, next) => {
     }
 }));
 
+router.post('/edit', asyncHandler(async (req, res, next) => {
+    try {
+        console.log(req.body);
+    } catch (error) {
+        next(error);
+    }
+}));
+
 module.exports = router;

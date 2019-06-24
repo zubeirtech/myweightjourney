@@ -21,7 +21,6 @@ mongoose.connect('mongodb://127.0.0.1:27017/myweightjourney', { useNewUrlParser:
 
 // Routes
 app.use('/', require('./routes/index'));
-app.use('/persons', require('./routes/persons'));
 
 const PORT = process.env.PORT || 3000;
 
