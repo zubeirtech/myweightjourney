@@ -1,33 +1,91 @@
 {{!-- app/templates/application.hbs --}}
-<div class="ui container">
-  <div class="ui grid">
-    <div class="one wide column">
-      <div class="ui visible massive very wide inverted vertical sidebar menu">
-        <a id="main_heading" class="item">
-          My Weight Journey
-        </a>
-        {{#link-to "dashboard" class="item"}}
-          Dashboard
-        {{/link-to}}
-        {{#link-to "edit" class="item"}}
-          Edit person
-        {{/link-to}}
+
+{{#if (media 'isDesktop')}}
+  <div class="ui container">
+    <div class="ui grid">
+      <div class="one wide column">
+        <div class="ui visible massive very wide inverted vertical sidebar menu">
+          <a id="main_heading" class="item">
+            My Weight Journey
+          </a>
+          {{#link-to "dashboard" class="item"}}
+            Dashboard
+          {{/link-to}}
+          {{#link-to "edit" class="item"}}
+            Edit person
+          {{/link-to}}
+        </div>
+      </div>
+      <div class="fifteen wide column">
+          <div class="ui grid">
+            <div class="fifteen wide column"></div>
+            <div class="one wide column">
+              <br>
+              <br>
+              {{#if session.isAuthenticated}}
+                <button class="ui inverted red circular button" {{action 'invalidateSession'}}>Logout</button>
+              {{else}}
+                {{#link-to 'login'}} <button class="ui inverted red circular button">Login</button> {{/link-to}}
+              {{/if}}
+            </div>
+          </div>
+        {{outlet}}
       </div>
     </div>
-    <div class="fifteen wide column">
-        <div class="ui grid">
-          <div class="fifteen wide column"></div>
-          <div class="one wide column">
-            <br>
-            <br>
-            {{#if session.isAuthenticated}}
-              <button class="ui inverted red circular button" {{action 'invalidateSession'}}>Logout</button>
-            {{else}}
-              {{#link-to 'login'}} <button class="ui inverted red circular button">Login</button> {{/link-to}}
-            {{/if}}
-          </div>
-        </div>
-      {{outlet}}
+  </div>
+{{/if}}
+
+{{#if (media 'isTablet')}}
+  <div class="ui container">
+    <div class="ui inverted stackable menu">
+      <a id="main_heading" class="item">
+          My Weight Journey
+      </a>
+      {{#link-to "dashboard" class="item"}}
+          Dashboard
+      {{/link-to}}
+      {{#link-to "edit" class="item"}}
+        Edit person
+      {{/link-to}}
+      {{#if session.isAuthenticated}}
+        <a class="item" {{action 'invalidateSession'}}>Logout</a>
+      {{else}}
+        {{#link-to 'login' class='item'}}Login{{/link-to}}
+      {{/if}}      
+    </div>
+    <br>
+    <div class="ui grid">
+      <div class="sixteen wide column">
+        {{outlet}}
+      </div>
     </div>
   </div>
-</div>
+{{/if}}
+
+{{#if (media 'isMobile')}}
+  <div class="ui container">
+    <div class="ui inverted stackable menu">
+      <a id="main_heading" class="item">
+          My Weight Journey
+      </a>
+      {{#link-to "dashboard" class="item"}}
+          Dashboard
+      {{/link-to}}
+      {{#link-to "edit" class="item"}}
+        Edit person
+      {{/link-to}}
+      {{#if session.isAuthenticated}}
+        <a class="item" {{action 'invalidateSession'}}>Logout</a>
+      {{else}}
+        {{#link-to 'login' class='item'}}Login{{/link-to}}
+      {{/if}}      
+    </div>
+    <br>
+    <div class="ui grid">
+      <div class="sixteen wide column">
+        {{outlet}}
+      </div>
+    </div>
+  </div>
+{{/if}}
+

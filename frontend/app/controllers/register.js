@@ -6,6 +6,7 @@ import Ember from 'ember';
 
 export default Controller.extend({
     toastr: service('toast'),
+    media: service(),
 
     init() {
         this._super(...arguments);

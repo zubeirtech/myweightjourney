@@ -6,6 +6,7 @@ import { inject as service } from '@ember/service';
 export default Controller.extend({
 
     toastr: service('toast'),
+    media: service(),
 
     setup(model) {
         model.forEach(doc => {

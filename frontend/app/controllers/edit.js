@@ -7,7 +7,9 @@ import Ember from 'ember';
 export default Controller.extend({
 
     toastr: service('toast'),
+    media: service(),
     currentWeight: '',
+    
 
     init() {
         this._super(...arguments);
