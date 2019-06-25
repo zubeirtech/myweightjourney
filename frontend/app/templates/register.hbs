@@ -6,21 +6,21 @@
         <form class="ui form">
           <div class="field">
             <label>Username</label>
-            {{input value=this.username type="text" enter=(action "register")}}
+            {{input value=this.username type="text" enter=(action "register")  placeholder="Enter name..."}}
           </div>
           <div class="field">
             <label>E-mail</label>
-            {{input value=this.email type="text" enter=(action "register")}}
+            {{input value=this.email type="text" enter=(action "register")  placeholder="Enter email..."}}
           </div>
           <div class="field">
             <label>Enter Password</label>
-            {{input value=this.password type="text" enter=(action "register")}}
+            {{input value=this.password type="text" enter=(action "register")  placeholder="Enter password..."}}
           </div>
           <div class="field">
             <label>Enter Password Again</label>
-            {{input value=this.secondPassword type="text" enter=(action "register")}}
+            {{input value=this.secondPassword type="text" enter=(action "register")  placeholder="Enter second password..."}}
           </div>
-          <button class="ui button" type="submit" {{action "register"}}>Submit</button>
+          <button class="ui inverted circular red button" type="submit" {{action "register"}}>Submit</button>
         </form>
       </div>
     </div>

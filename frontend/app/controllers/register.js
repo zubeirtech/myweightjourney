@@ -36,6 +36,7 @@ export default Controller.extend({
                               .then(doc => {
                                   if (doc) {
                                       this.toastr.success("Successfully added user", "Congratulations");
+                                      this.transitionToRoute('login');
                                   }
                               })
                               .catch(e => {

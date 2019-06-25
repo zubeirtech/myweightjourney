@@ -14,6 +14,11 @@
           <br>
           <br>
           <button class="ui inverted red circular button" type="submit">Login</button>
+          <br>
+          <br>
+          {{#link-to "register"}}
+            Sign Up!
+          {{/link-to}} if not registered yet.
           {{#if errorMessage}}
           {{/if}}
         </form>
