@@ -7,9 +7,6 @@ const bcrypt = require('bcrypt');
 
 const router = express.Router();
 
-const UserSerializer = new JSONAPISerializer('user', {
-    attributes: ['username', 'email', 'password'],
-});
 
 const PersonSerializer = new JSONAPISerializer('person', {
     attributes: [
