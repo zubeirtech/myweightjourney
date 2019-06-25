@@ -41,7 +41,9 @@ export default Controller.extend({
                               })
                               .catch(e => {
                                   Ember.Logger.warn(e);
-                                  this.toastr.error("Email already exists, please use different email", "Error");                            
+                                  if(e.errors[0].status === "404") {
+                                      this.toastr.error("Email already exists, please use different email", "Error");                            
+                                  }
                               })
 
                             

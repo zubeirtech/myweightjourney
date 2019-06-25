@@ -40,6 +40,10 @@ const PersonSchema = new mongoose.Schema({
         required: true,
         default: 0,
     },
+    email: {
+        type: String,
+        required: true,
+    },
 });
 
 const Person = mongoose.model('Person', PersonSchema);

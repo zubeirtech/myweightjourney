@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat+Alternates&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat+Subrayada&display=swap');
 
 body {
     font-family: 'Montserrat Alternates', sans-serif;
     background: #e4eaec
+}
+
+#main_heading {
+    font-family: 'Montserrat Subrayada', sans-serif;
+    font-size: 25px;
 }
