@@ -14,11 +14,11 @@
           </div>
           <div class="field">
             <label>Enter Password</label>
-            {{input value=this.password type="text" enter=(action "register")  placeholder="Enter password..."}}
+            {{input value=this.password type="password" enter=(action "register")  placeholder="Enter password..."}}
           </div>
           <div class="field">
             <label>Enter Password Again</label>
-            {{input value=this.secondPassword type="text" enter=(action "register")  placeholder="Enter second password..."}}
+            {{input value=this.secondPassword type="password" enter=(action "register")  placeholder="Enter second password..."}}
           </div>
           <button class="ui inverted circular red button" type="submit" {{action "register"}}>Submit</button>
         </form>
