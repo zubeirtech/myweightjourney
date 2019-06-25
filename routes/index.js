@@ -29,6 +29,8 @@ const PersonSerializer = new JSONAPISerializer('person', {
 const User = require('../models/User');
 const Person = require('../models/Person');
 
+let currentUser;
+
 // token route for auth
 router.post('/token', asyncHandler(async (req, res, next) => {
     if (req.body.grant_type === 'password') {
@@ -39,6 +41,7 @@ router.post('/token', asyncHandler(async (req, res, next) => {
                     const findPerson = await Person.find({ email: username });
 
                     if (findPerson.length !== 0) {
+                        currentUser = username;
                         bcrypt.compare(password, docs[0].password, (error, val) => {
                             if (error) {
                                 next(error);
@@ -76,7 +79,7 @@ router.post('/users', asyncHandler((req, res, next) => {
                 const findUser = await User.find({ email });
 
                 if (findUser.length > 0) {
-                    res.status(404).send('{"error": "E-mail exists already"}');
+                    res.status(400).send('{"error": "E-mail exists already"}');
                     next();
                 } else {
                     bcrypt.genSalt(10, (e, salt) => {
@@ -124,7 +127,7 @@ router.post('/users', asyncHandler((req, res, next) => {
 
 router.get('/people', asyncHandler(async (req, res, next) => {
     try {
-        const docs = await Person.find();
+        const docs = await Person.find({ email: currentUser });
 
         if (docs.length > 0) {
             const personDocs = docs[0];
