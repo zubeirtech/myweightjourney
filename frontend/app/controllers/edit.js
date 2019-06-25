@@ -39,6 +39,9 @@ export default Controller.extend({
                         model.weights.pushObject(parseInt(this.currentWeight));
                         //Save Model
                         await model.save().then(doc => {
+                            if(doc) {
+                                //pass
+                            }
                             this.toastr.success('Successfully saved new person', 'Nice!');
                             this.transitionToRoute('dashboard');
 
