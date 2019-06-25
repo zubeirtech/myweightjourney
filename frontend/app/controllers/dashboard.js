@@ -7,6 +7,8 @@ export default Controller.extend({
 
     toastr: service('toast'),
     media: service(),
+    inputClass: 'ui input',
+    buttonClass: 'ui inverted blue circular button',
 
     setup(model) {
         model.forEach(doc => {
@@ -75,6 +77,8 @@ export default Controller.extend({
                 this.model.forEach(doc => {
                     doc.weights.pushObject(parseInt(this.newWeight));
                     doc.dates.pushObject(Date.now());
+                    set(this, 'inputClass', 'ui disabled input');
+                    set(this, 'buttonClass', 'ui inverted blue disable circular button')
                     this.toastr.success('Successfully added new weight', 'Success');
                     doc.save();
                     setTimeout(() => {

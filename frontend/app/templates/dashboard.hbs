@@ -71,8 +71,8 @@
                             <label for="">Add new weight</label>
                             <br>
                             <div class="ui action input">
-                              {{input value=this.newWeight placeholder="New weight..." enter=(action "addNewWeight")}}
-                              <button class="ui inverted blue circular button" {{action "addNewWeight"}} >Add</button>
+                              {{input value=this.newWeight placeholder="New weight..." enter=(action "addNewWeight") class=this.inputClass}}
+                              <button class={{this.buttonClass}} {{action "addNewWeight"}} >Add</button>
                             </div>
                         </div>
                     </div>
