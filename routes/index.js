@@ -115,9 +115,16 @@ router.post('/users', asyncHandler((req, res, next) => {
 router.get('/people', asyncHandler(async (req, res, next) => {
     try {
         const docs = await Person.find();
-        if (docs) {
+
+        if (docs.length > 0) {
             const personDocs = docs[0];
             const personsJson = PersonSerializer.serialize(personDocs);
+            res.status(200).send(personsJson);
+            next();
+        } else {
+            const person = new Person({});
+            await person.save();
+            const personsJson = PersonSerializer.serialize(person);
             res.status(200).send(personsJson);
             next();
         }
@@ -143,21 +150,29 @@ router.patch('/people/:id', asyncHandler(async (req, res, next) => {
             } = person;
 
             const doc = await Person.findById(id);
-            doc.name = name;
-            doc.gender = gender;
-            doc.bmi = bmi;
-            doc.goal = goal;
-            doc.unit = unit;
-            doc.dates = dates;
-            doc.height = height;
-            doc.weights = weights;
-            doc.age = age;
+            if (!doc) {
+                const newPerson = new Person({});
+                await person.save();
+                const personsJson = PersonSerializer.serialize(newPerson);
+                res.status(200).send(personsJson);
+                next();
+            } else {
+                doc.name = name;
+                doc.gender = gender;
+                doc.bmi = bmi;
+                doc.goal = goal;
+                doc.unit = unit;
+                doc.dates = dates;
+                doc.height = height;
+                doc.weights = weights;
+                doc.age = age;
 
-            await doc.save();
+                await doc.save();
 
-            const personJson = PersonSerializer.serialize(doc);
-            res.status(200).send(personJson);
-            next();
+                const personJson = PersonSerializer.serialize(doc);
+                res.status(200).send(personJson);
+                next();
+            }
         });
     } catch (error) {
         next(error);

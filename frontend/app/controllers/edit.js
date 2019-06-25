@@ -34,15 +34,14 @@ export default Controller.extend({
                         let bminum = Math.round(mathjs.evaluate(`${this.currentWeight} / ${m.value} ^ 2`))
                         set(model, 'bmi', bminum);
                         //Save dates
-                        set(model, 'dates', []);
                         model.dates.pushObject(Date.now());
                         //Save weights
-                        set(model, 'weights', []);
                         model.weights.pushObject(parseInt(this.currentWeight));
                         //Save Model
                         await model.save().then(doc => {
                             this.toastr.success('Successfully saved new person', 'Nice!');
                             this.transitionToRoute('dashboard');
+
                         }).catch(e => {
                             Ember.Logger.error(e);
                         })
